@@ -43,18 +43,28 @@ class WBAPI {
     }
 
     public function iterate($path, $data, $onData) {
-        $nextLink = $path;
+        $page = 1;
 
-        do {
-            $response = $this->request($nextLink, $data);
+        while(true) {
+            echo "getting data at page: $page\n";
+            $paginatedData = array_merge_recursive($data, [
+                'page' => $page
+            ]);
+
+            $response = $this->request($path, $paginatedData);
             $dataResponse = $onData($response);
 
             if ($dataResponse === false) {
                 return;
             }
 
-            $nextLink = $response['links']['next'] ?? null;
+            $link = $response['links']['next'] ?? null;
 
-        } while($nextLink !== null);
+            if (!$link) {
+                return;
+            }
+
+            $page++;
+        }
     }
 }

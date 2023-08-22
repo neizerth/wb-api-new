@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('supplier_article')->nullable();
             $table->string('tech_size')->nullable();
             $table->string('barcode')->nullable();
-            $table->unsignedInteger('total_price')->nullable();
+
+            $table->double('total_price')->nullable();
+
             $table->unsignedInteger('discount_percent')->nullable();
 
             $table->unsignedTinyInteger('is_supply')->default(0);
@@ -32,7 +34,7 @@ return new class extends Migration
             $table->string('region_name')->nullable();
 
             $table->unsignedBigInteger('income_id')->nullable();
-            $table->unsignedBigInteger('sale_id')->nullable();
+            $table->string('sale_id')->nullable();
             $table->unsignedBigInteger('odid')->nullable();
             $table->unsignedBigInteger('spp')->nullable();
             $table->double('for_pay')->nullable();
