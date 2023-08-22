@@ -41,4 +41,20 @@ class WBAPI {
 
         return $data;
     }
+
+    public function iterate($path, $data, $onData) {
+        $nextLink = $path;
+
+        do {
+            $response = $this->request($nextLink, $data);
+            $dataResponse = $onData($response);
+
+            if ($dataResponse === false) {
+                return;
+            }
+
+            $nextLink = $response['links']['next'] ?? null;
+
+        } while($nextLink !== null);
+    }
 }

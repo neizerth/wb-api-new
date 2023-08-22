@@ -26,14 +26,6 @@ class Test extends Command
      */
     public function handle()
     {
-        $api = new WBAPI();
 
-        $dateFrom = now()->format('Y-m-d');
-
-        $response = $api->request('/api/sales', [
-            'dateFrom' => $dateFrom,
-        ]);
-
-        var_dump($response);
     }
 }
