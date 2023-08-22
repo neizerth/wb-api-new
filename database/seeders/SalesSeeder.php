@@ -20,7 +20,7 @@ class SalesSeeder extends Seeder
 
 //        $dateFrom = now()->format('Y-m-d');
         $dateFrom = '1990-01-01';
-        $dateFrom = '2024-01-01';
+//        $dateFrom = '2024-01-01';
 
         $api->iterate('/api/sales', [
             'dateFrom' => $dateFrom,
